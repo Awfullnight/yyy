@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <meta name="theme-color" content="#080c13" />
+  <meta name="description" content="ORBITAL FORGE — 3D игра-конструктор космических ракет: собери аппарат, рассчитай посадку, лети на Луну или Марс." />
+  <title>ORBITAL FORGE — 3D Mission Simulator</title>
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <header class="masthead">
+      <a class="brand" href="#" aria-label="ORBITAL FORGE">
+        <span class="brand-icon"><svg viewBox="0 0 40 40" aria-hidden="true"><path d="M20 3 33 30 20 25 7 30 20 3Z" fill="currentColor"/><path d="M20 12v22" stroke="#081013" stroke-width="2"/></svg></span>
+        <span class="brand-type"><strong>ORBITAL<span>FORGE</span></strong><small>MISSION CONTROL / 01</small></span>
+      </a>
+      <div class="masthead-middle"><span class="pulse-dot"></span> КОСМИЧЕСКАЯ ПРОГРАММА <span class="version">TEST MODE · ∞</span></div>
+      <div class="language-switch" role="group" aria-label="Language / Язык"><button type="button" data-language="ru" class="active" aria-pressed="true">RU</button><button type="button" data-language="en" aria-pressed="false">EN</button></div>
+      <div class="wallet">
+        <div class="wallet-meta"><small>БАЛАНС ЭКСПЕДИЦИИ / ТЕСТ</small><b id="credits">∞</b></div>
+        <span class="credit-unit">CR</span>
+      </div>
+    </header>
+
+    <main>
+      <div class="title-row">
+        <div><div class="eyebrow"><span class="eyebrow-line"></span> ИНЖЕНЕРНАЯ СИМУЛЯЦИЯ · СЕЗОН 01</div><h1>От чертежа <em>до другой планеты.</em></h1><p>Собирай ракету. Рискуй ресурсами. Управляй миссией.</p></div>
+        <div class="destination-switch" role="group" aria-label="Цель миссии">
+          <button class="dest active" data-mission="moon"><span class="dest-glyph moon-glyph"></span><span><small>ПРОГРАММА 01</small><b>ЛУНА</b></span></button>
+          <button class="dest" data-mission="mars"><span class="dest-glyph mars-glyph"></span><span><small>ПРОГРАММА 02</small><b>МАРС</b></span></button>
+        </div>
+      </div>
+
+      <div class="resources-strip" aria-label="Ресурсы на складе">
+        <span class="strip-label">СКЛАД /</span>
+        <div class="resource"><span class="resource-icon metal">Fe</span><span>СПЛАВЫ</span><strong id="res-metal">135</strong></div>
+        <div class="resource"><span class="resource-icon composite">Cx</span><span>КОМПОЗИТЫ</span><strong id="res-composite">75</strong></div>
+        <div class="resource"><span class="resource-icon electronics">Si</span><span>ЭЛЕКТРОНИКА</span><strong id="res-electronics">45</strong></div>
+        <div class="resource"><span class="resource-icon fuel">⛽</span><span>ТОПЛИВО В РАКЕТЕ <small id="res-fuel-type">RP-1 / LOX</small></span><strong id="res-fuel">0 кг</strong></div>
+        <span class="autosave">◉ АВТОСОХРАНЕНИЕ</span>
+      </div>
+
+      <div class="workspace-grid">
+        <section class="stage-panel" aria-label="3D визуализация ракеты и полёта">
+          <div class="stage-topline">
+            <div class="stage-heading"><span class="live-badge" id="live-badge">● В АНГАРЕ</span><span class="stage-divider">/</span><span id="stage-label">3D КОНСТРУКТОР</span></div>
+            <div class="stage-buttons"><button class="camera-btn active" id="orbit-button" title="Свободное вращение камеры">◌ ВРАЩЕНИЕ</button><button class="camera-btn" id="reset-camera" title="Вернуть исходную камеру">↺ ВИД</button><button class="camera-btn" id="speed-button" title="Ускорение игрового времени">×1 СКОРОСТЬ</button></div>
+          </div>
+          <div class="scene-container" id="scene-container">
+            <canvas id="scene" aria-label="Интерактивная трёхмерная сцена, вращайте мышью или пальцем"></canvas>
+            <div class="scene-grid-overlay" aria-hidden="true"></div>
+            <div class="scene-side-label">OF — 001 <span>•</span> SIMULATION SPACE</div>
+            <div class="scene-coordinate" id="scene-coordinate">X 000.00&nbsp;&nbsp; Y 000.00&nbsp;&nbsp; Z 000.00</div>
+            <div class="scene-overlay-left" id="scene-overlay-left">
+              <div class="scene-kicker" id="scene-kicker">СБОРОЧНЫЙ ДОК / A–01</div>
+              <div class="scene-main-title" id="scene-main-title">ASTRA <span>MK I</span></div>
+              <div class="scene-subtitle" id="scene-subtitle">Ожидает установки модулей</div>
+            </div>
+            <div class="flight-overlay hidden" id="flight-overlay"><span class="flight-overlay-label">ПОЛЁТ В ПРОЦЕССЕ</span><strong id="flight-distance">0 км</strong><div class="flight-progress"><span id="flight-progress-bar"></span></div><small id="flight-time">T+ 00:00</small></div>
+            <div class="engine-camera"><div class="engine-camera-top"><span>◈ ENGINE CAM</span><span id="engine-cam-indicator">STANDBY</span></div><canvas id="engine-canvas" width="240" height="146"></canvas><div id="engine-camera-temperature">ДВИГАТЕЛЬ 20°C</div></div>
+            <div class="scene-hint">↔ ПОТЯНИ, ЧТОБЫ ВРАЩАТЬ · КОЛЁСИКО — МАСШТАБ</div>
+          </div>
+
+          <div class="telemetry-grid">
+            <div class="telemetry-card"><div class="tele-label">ΔV / ЗАПАС СКОРОСТИ <span>↗</span></div><strong id="tele-dv">0.00 <small>км/с</small></strong><div class="tele-bar"><i id="bar-dv" style="width:0%"></i></div></div>
+            <div class="telemetry-card"><div class="tele-label">МАССА РАКЕТЫ <span>◈</span></div><strong id="tele-mass">0.0 <small>т</small></strong><div class="tele-footer">С ТОПЛИВОМ</div></div>
+            <div class="telemetry-card"><div class="tele-label">ТЕМП. ОБОЛОЧКИ <span>◉</span></div><strong id="tele-heat">20 <small>°C</small></strong><div class="tele-footer" id="heat-status">НОРМА</div></div>
+            <div class="telemetry-card"><div class="tele-label">СОСТОЯНИЕ <span>♢</span></div><strong id="tele-integrity">100 <small>%</small></strong><div class="tele-footer" id="integrity-status">СИСТЕМЫ ГОТОВЫ</div></div>
+          </div>
+
+          <div class="mission-timeline">
+            <div class="section-title"><span>ЭТАПЫ МИССИИ</span><small id="mission-timeline-caption">ГОТОВНОСТЬ К ЗАПУСКУ</small></div>
+            <div class="timeline-steps">
+              <div class="timeline-step active" data-phase="0"><span>01</span><b>СТАРТ</b></div><div class="timeline-connect"></div>
+              <div class="timeline-step" data-phase="1"><span>02</span><b>РАЗГОН</b></div><div class="timeline-connect"></div>
+              <div class="timeline-step" data-phase="2"><span>03</span><b>ПЕРЕЛЁТ</b></div><div class="timeline-connect"></div>
+              <div class="timeline-step" data-phase="3"><span>04</span><b>СНИЖЕНИЕ</b></div><div class="timeline-connect"></div>
+              <div class="timeline-step" data-phase="4"><span>05</span><b>ПОСАДКА</b></div>
+            </div>
+          </div>
+        </section>
+
+        <aside class="control-panel">
+          <div class="control-top"><div class="control-title"><span class="panel-tiny">ПАНЕЛЬ УПРАВЛЕНИЯ / 01</span><strong>Центр миссии <span>↗</span></strong></div><div class="panel-circle">◈</div></div>
+          <div class="tabs" role="tablist" aria-label="Панели игры">
+            <button class="tab active" data-tab="build" role="tab" aria-selected="true">СБОРКА</button>
+            <button class="tab" data-tab="plan" role="tab" aria-selected="false">РАСЧЁТ</button>
+            <button class="tab" data-tab="shop" role="tab" aria-selected="false">МАГАЗИН</button>
+            <button class="tab" data-tab="report" role="tab" aria-selected="false">ОТЧЁТЫ</button>
+            <button class="tab" data-tab="guide" role="tab" aria-selected="false">СПРАВКА</button>
+          </div>
+          <div class="panel-content" id="panel-content"></div>
+          <div class="panel-bottom">
+            <div class="launch-readiness"><span id="ready-indicator" class="readiness-light"></span><span id="ready-text">Собери ракету для запуска</span><span id="ready-counter">0 / 6</span></div>
+            <button id="launch-button" class="launch-button" disabled><span>НАЧАТЬ МИССИЮ</span><b>↗</b></button>
+          </div>
+        </aside>
+      </div>
+
+      <section class="lower-grid">
+        <div class="flight-log"><div class="section-title"><span>ТЕЛЕМЕТРИЯ / ЖУРНАЛ СОБЫТИЙ</span><small>LIVE FEED</small></div><div id="log-entries" class="log-entries"><div class="log-row"><time>00:00</time><span class="log-green">●</span><span>Центр управления готов. Выберите модули и цель экспедиции.</span></div></div></div>
+        <div class="rules-card"><span class="rules-number">01 / ПРАВИЛА</span><h3>Каждая посадка<br/>имеет цену.</h3><p>За успешный полёт получай кредиты и материалы. Аварии тратят ресурсы. Решения во время полёта меняют исход.</p><div class="rules-bottom"><span>МОДЕЛЬ: ИГРОВАЯ, НЕ НАВИГАЦИОННАЯ</span><span>↗</span></div></div>
+      </section>
+      <footer><span>ORBITAL FORGE © 2026</span><span>ПРОЕКТИРУЙ. ИСПЫТЫВАЙ. ИССЛЕДУЙ.</span><a class="pitch-link" href="./pitch.html" target="_blank" rel="noopener">ПРЕЗЕНТАЦИЯ ↗</a><button id="restart-career">НОВАЯ КАРЬЕРА ↻</button></footer>
+    </main>
+  </div>
+  <div id="modal-root" class="modal-root hidden" aria-live="assertive"></div>
+  <div id="toast-root" class="toast-root" aria-live="polite"></div>
+  <script type="module" src="./game.js"></script>
+</body>
+</html>

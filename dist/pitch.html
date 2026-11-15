@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#07111f">
+  <meta name="description" content="ORBITAL FORGE: an animated, seven-slide English pitch for the NASA Space Apps educational spaceflight game.">
+  <title>ORBITAL FORGE / NASA Space Apps / Animated Pitch</title>
+  <link rel="stylesheet" href="./pitch.css">
+</head>
+<body>
+  <div class="cosmos" aria-hidden="true"></div>
+  <header class="topbar">
+    <a class="brand" href="./" aria-label="Return to ORBITAL FORGE game"><span class="brand-mark">⌁</span>ORBITAL<b>FORGE</b></a>
+    <span class="top-label">NASA SPACE APPS 2026 / EDUCATIONAL GAME PITCH</span>
+  </header>
+
+  <main class="slide-viewport" aria-live="polite">
+    <!-- 01 — Cover -->
+    <section class="slide hero active" data-title="ORBITAL FORGE" aria-label="Slide 1: ORBITAL FORGE">
+      <div class="slide-content">
+        <div class="eyebrow reveal">01 / A 3D EDUCATIONAL MISSION GAME</div>
+        <h1 class="reveal delay-1">ORBITAL<br><span class="accent">FORGE</span></h1>
+        <p class="lead reveal delay-2">Build a spacecraft. Reach the Moon or Mars. Learn to make engineering decisions.</p>
+        <div class="hero-tag reveal delay-3"><span class="accent">✦</span> NASA SPACE APPS 2026 <span>·</span> RU / EN <span>·</span> 3D SIMULATOR</div>
+      </div>
+    </section>
+
+    <!-- 02 — Problem -->
+    <section class="slide" data-title="The problem" aria-label="Slide 2: The problem">
+      <div class="slide-content">
+        <div class="eyebrow reveal">02 / WHY WE BUILT IT</div>
+        <h2 class="reveal delay-1">Space engineering feels <span class="warm">out of reach.</span></h2>
+        <p class="lead reveal delay-2">Students study equations, but rarely see how one design decision changes the outcome of a mission.</p>
+        <div class="grid three">
+          <article class="card"><span class="tag">01 / COMPLEXITY</span><h3>Connected systems</h3><p>Propulsion, mass, fuel and thermal protection all affect each other.</p></article>
+          <article class="card"><span class="tag warm">02 / RISK</span><h3>Failure is expensive</h3><p>A small braking error or damaged engine can end a mission.</p></article>
+          <article class="card"><span class="tag blue">03 / PRACTICE</span><h3>Few opportunities</h3><p>Learners need a safe place to test, fail and try again.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 03 — Rocket assembly -->
+    <section class="slide" data-title="Rocket assembly" aria-label="Slide 3: Rocket assembly">
+      <div class="slide-content">
+        <div class="eyebrow reveal">03 / BUILD AND UPGRADE</div>
+        <h2 class="reveal delay-1">Six systems. <span class="blue">One mission.</span></h2>
+        <p class="lead reveal delay-2">Choose the parts yourself. Every module changes performance, reliability or safe landing limits.</p>
+        <div class="module-grid">
+          <article class="module"><span class="module-icon">◈</span><div><h3>HULL</h3><p>Mass and durability</p></div></article>
+          <article class="module"><span class="module-icon">✦</span><div><h3>ENGINE</h3><p>Thrust and efficiency</p></div></article>
+          <article class="module"><span class="module-icon">▰</span><div><h3>FUEL TANK</h3><p>Range and reserves</p></div></article>
+          <article class="module"><span class="module-icon">⌖</span><div><h3>GUIDANCE</h3><p>Trajectory precision</p></div></article>
+          <article class="module"><span class="module-icon">⬡</span><div><h3>HEAT SHIELD</h3><p>Temperature limit</p></div></article>
+          <article class="module"><span class="module-icon">⋈</span><div><h3>LANDING LEGS</h3><p>Safe touchdown speed</p></div></article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 04 — Flight route -->
+    <section class="slide" data-title="Flight route" aria-label="Slide 4: Flight route">
+      <div class="slide-content">
+        <div class="eyebrow reveal">04 / EARTH TO MOON AND MARS</div>
+        <h2 class="reveal delay-1">A flight path <span class="accent">you can follow.</span></h2>
+        <p class="lead reveal delay-2">The rocket moves along a visible trajectory while telemetry tracks fuel, speed and temperature.</p>
+        <div class="route-stage reveal delay-3" role="img" aria-label="Animated rocket following a curved path from Earth to Mars">
+          <div class="route-caption">LIVE ROUTE  /  EARTH → MARS</div>
+          <svg viewBox="0 0 1200 340" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+            <defs>
+              <radialGradient id="earth-glow" cx="33%" cy="26%"><stop offset="0" stop-color="#a2d9ff"/><stop offset=".38" stop-color="#2d88bb"/><stop offset="1" stop-color="#102a4a"/></radialGradient>
+              <radialGradient id="mars-glow" cx="32%" cy="27%"><stop offset="0" stop-color="#ffc89c"/><stop offset=".47" stop-color="#ca744d"/><stop offset="1" stop-color="#692c30"/></radialGradient>
+            </defs>
+            <circle cx="115" cy="266" r="112" fill="url(#earth-glow)" class="earth-dot"/>
+            <circle cx="1093" cy="154" r="82" fill="url(#mars-glow)" class="mars-dot"/>
+            <path id="flight-curve" d="M 175 264 C 330 23 800 30 1050 157" class="orbit-trail"/>
+            <path d="M 175 264 C 330 23 800 30 1050 157" class="orbit-progress"/>
+            <g class="rocket-marker">
+              <path d="M -19 -9 L 21 0 L -19 9 L -9 0 Z" fill="#d8fa74" stroke="#edfdb1" stroke-width="2"/>
+              <path d="M -16 0 L -31 0" stroke="#8edbff" stroke-width="6" stroke-linecap="round"/>
+              <animateMotion dur="8s" repeatCount="indefinite" rotate="auto" keySplines=".35 0 .2 1" calcMode="spline" keyTimes="0;1"><mpath href="#flight-curve"/></animateMotion>
+            </g>
+            <text x="45" y="330" fill="#b3e5ff" font-size="16" font-family="monospace">EARTH</text>
+            <text x="1054" y="273" fill="#ffc5a5" font-size="16" font-family="monospace">MARS</text>
+          </svg>
+          <div class="route-micro">3D TRANSFER MODEL  /  EDUCATIONAL SCALE</div>
+        </div>
+        <div class="phase-list reveal delay-3" aria-label="Mission phases">
+          <span class="phase">LAUNCH</span><span class="phase-arrow">→</span><span class="phase">ACCELERATE</span><span class="phase-arrow">→</span><span class="phase">TRANSFER</span><span class="phase-arrow">→</span><span class="phase">DESCEND</span><span class="phase-arrow">→</span><span class="phase">LAND</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- 05 — Critical failures -->
+    <section class="slide" data-title="Critical events" aria-label="Slide 5: Critical events">
+      <div class="slide-content">
+        <div class="eyebrow reveal">05 / DECISIONS UNDER PRESSURE</div>
+        <h2 class="reveal delay-1">When a system <span class="warm">fails.</span></h2>
+        <p class="lead reveal delay-2">The simulation pauses for your decision. Every response consumes fuel, energy or structural margin.</p>
+        <div class="fault-grid">
+          <article class="fault hot"><strong>930°C</strong><div><h3>OVERHEATING</h3><p>Reduce thrust to cool the hull.</p></div></article>
+          <article class="fault cold"><strong>−210°C</strong><div><h3>ICING</h3><p>Spend energy to warm sensors.</p></div></article>
+          <article class="fault critical"><strong>0%</strong><div><h3>ENGINE FAILURE</h3><p>Restart or switch to a backup.</p></div></article>
+          <article class="fault nav"><strong>+22 KM</strong><div><h3>NAVIGATION ERROR</h3><p>Correct course using extra fuel.</p></div></article>
+        </div>
+        <p class="small-note" style="margin-top:22px">ADDITIONAL EVENTS: FUEL LEAK · MICROMETEORITE IMPACT · SOLAR STORM</p>
+      </div>
+    </section>
+
+    <!-- 06 — Interactive landing exercise -->
+    <section class="slide" data-title="Landing math" aria-label="Slide 6: Landing math">
+      <div class="slide-content formula-layout">
+        <div>
+          <div class="eyebrow reveal">06 / LEARNING BY CALCULATION</div>
+          <h2 class="reveal delay-1">Landing is a <span class="accent">math problem.</span></h2>
+          <p class="lead reveal delay-2">Choose braking altitude and engine burn time. The forecast changes immediately.</p>
+          <div class="formula-panel reveal delay-3">h ≈ v² / (2a)</div>
+          <p class="small-note">h = ALTITUDE · v = APPROACH SPEED · a = DECELERATION<br>SIMPLIFIED LEARNING MODEL</p>
+        </div>
+        <div class="math-panel reveal delay-2">
+          <div class="range-row">
+            <div class="range-label"><label for="alt-range">Braking altitude</label><output id="alt-value" for="alt-range">8.0 km</output></div>
+            <input type="range" min="1" max="20" step=".1" value="8" id="alt-range" aria-label="Braking altitude in kilometers">
+          </div>
+          <div class="range-row">
+            <div class="range-label"><label for="burn-range">Engine burn time</label><output id="burn-value" for="burn-range">24.0 s</output></div>
+            <input type="range" min="5" max="55" step=".5" value="24" id="burn-range" aria-label="Engine burn duration in seconds">
+          </div>
+          <div class="prediction" id="prediction">
+            <div class="small-note">PREDICTED TOUCHDOWN SPEED</div>
+            <strong id="speed-value">3.5 m/s</strong>
+            <div class="status" id="landing-status">✓ WITHIN LANDING LEG LIMIT</div>
+          </div>
+          <p class="small-note" style="margin-top:15px">TRY MOVING THE SLIDERS AND COMPARE THE RESULT</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 07 — NASA Space Apps relationship and demo -->
+    <section class="slide" data-title="Space Apps fit" aria-label="Slide 7: Space Apps fit">
+      <div class="slide-content">
+        <div class="eyebrow reveal">07 / EDUCATIONAL VALUE</div>
+        <h2 class="reveal delay-1">Space education with <span class="accent">Moon and Mars.</span></h2>
+        <p class="lead reveal delay-2">Our prototype teaches spacecraft design, mission trade-offs and landing decisions through a playable simulation.</p>
+        <div class="grid three">
+          <article class="card"><span class="tag">NOW</span><h3>Mission simulator</h3><p>3D rocket builder, flight path, failures and landing exercises.</p></article>
+          <article class="card"><span class="tag blue">NEXT</span><h3>Outpost management</h3><p>Power, life support, radiation and food systems.</p></article>
+          <article class="card"><span class="tag warm">FUTURE</span><h3>NASA open data</h3><p>Learning scenarios based on verified datasets.</p></article>
+        </div>
+        <div class="nasa-note reveal delay-3"><strong>Challenge alignment:</strong> the official Junior Astronaut Mission Trainer focuses on a Moon/Mars outpost. That mode is a proposed next step; the current game focuses on flight and landing education.</div>
+        <div style="display:flex;justify-content:space-between;gap:15px;align-items:center;flex-wrap:wrap;margin-top:22px" class="reveal delay-3">
+          <a class="game-link" href="./">↗ PLAY ORBITAL FORGE</a>
+          <span class="small-note">INFINITE TEST CREDITS · GAME-SCALE PHYSICS</span>
+        </div>
+        <div class="sources">Sources: <a href="https://www.spaceappschallenge.org/2026/challenges/junior-astronaut-mission-trainer/" target="_blank" rel="noopener">Official challenge</a> · <a href="https://www.nasa.gov/entry-systems-modeling-esm-2/" target="_blank" rel="noopener">NASA Entry Systems Modeling</a></div>
+      </div>
+    </section>
+  </main>
+
+  <nav class="footerbar" aria-label="Presentation controls">
+    <span class="counter" id="counter" aria-live="off">01 / 07</span>
+    <div class="progress" role="progressbar" aria-label="Presentation progress" aria-valuemin="1" aria-valuemax="7" aria-valuenow="1" id="progress"><div class="progress-fill" id="progress-fill"></div></div>
+    <div class="dots" id="dots" aria-label="Go to slide"></div>
+    <button type="button" class="auto" id="autoplay" aria-label="Start automatic slideshow" aria-pressed="false">▶ AUTO</button>
+    <button type="button" class="control" id="previous" aria-label="Previous slide">‹</button>
+    <button type="button" class="control" id="next" aria-label="Next slide">›</button>
+  </nav>
+
+  <script>
+    const slides=[...document.querySelectorAll('.slide')];
+    const dots=document.getElementById('dots');
+    let active=0,autoplayTimer=null,touchStart=null;
+    const pad=n=>String(n).padStart(2,'0');
+    slides.forEach((slide,index)=>{
+      const button=document.createElement('button');
+      button.type='button';button.className='dot';button.title=`Slide ${index+1}: ${slide.dataset.title}`;button.setAttribute('aria-label',button.title);
+      button.addEventListener('click',()=>goTo(index));dots.append(button);
+    });
+    function goTo(next){
+      active=(next+slides.length)%slides.length;
+      slides.forEach((slide,index)=>{
+        const selected=index===active;
+        slide.classList.toggle('active',selected);
+        slide.classList.toggle('before',index<active);
+        slide.setAttribute('aria-hidden',String(!selected));
+        slide.inert=!selected;
+        if(selected)slide.scrollTop=0;
+      });
+      document.getElementById('counter').textContent=`${pad(active+1)} / ${pad(slides.length)}`;
+      document.getElementById('progress-fill').style.width=`${(active+1)/slides.length*100}%`;
+      document.getElementById('progress').setAttribute('aria-valuenow',String(active+1));
+      [...dots.children].forEach((button,index)=>button.classList.toggle('active',index===active));
+      history.replaceState(null,'',`#slide-${active+1}`);
+    }
+    document.getElementById('previous').addEventListener('click',()=>goTo(active-1));
+    document.getElementById('next').addEventListener('click',()=>goTo(active+1));
+    document.addEventListener('keydown',event=>{
+      if(event.target.matches('input,textarea,select'))return;
+      if(['ArrowRight','ArrowDown','PageDown',' '].includes(event.key)){event.preventDefault();goTo(active+1);}
+      if(['ArrowLeft','ArrowUp','PageUp'].includes(event.key)){event.preventDefault();goTo(active-1);}
+      if(event.key==='Home')goTo(0);
+      if(event.key==='End')goTo(slides.length-1);
+    });
+    document.addEventListener('touchstart',event=>{if(!event.target.closest('input'))touchStart=event.touches[0].clientX;},{passive:true});
+    document.addEventListener('touchend',event=>{
+      if(touchStart===null)return;
+      const distance=event.changedTouches[0].clientX-touchStart;
+      if(Math.abs(distance)>75)goTo(active+(distance<0?1:-1));
+      touchStart=null;
+    },{passive:true});
+    const autoButton=document.getElementById('autoplay');
+    function toggleAuto(){
+      if(autoplayTimer){clearInterval(autoplayTimer);autoplayTimer=null;autoButton.textContent='▶ AUTO';autoButton.classList.remove('running');autoButton.setAttribute('aria-pressed','false');}
+      else{autoplayTimer=setInterval(()=>goTo(active+1),9000);autoButton.textContent='Ⅱ PAUSE';autoButton.classList.add('running');autoButton.setAttribute('aria-pressed','true');}
+    }
+    autoButton.addEventListener('click',toggleAuto);
+    document.addEventListener('visibilitychange',()=>{if(document.hidden&&autoplayTimer)toggleAuto();});
+    const altitude=document.getElementById('alt-range'),burn=document.getElementById('burn-range');
+    function landingPrediction(){
+      const h=Number(altitude.value),t=Number(burn.value);
+      document.getElementById('alt-value').value=`${h.toFixed(1)} km`;
+      document.getElementById('burn-value').value=`${t.toFixed(1)} s`;
+      const speed=3.5+Math.abs(h-8)*1.45+Math.abs(t-24)*.72+(h<8?(8-h)*1.25:0)+(t<24?(24-t)*.7:0);
+      const safe=speed<=12.5;
+      document.getElementById('speed-value').textContent=`${speed.toFixed(1)} m/s`;
+      document.getElementById('landing-status').textContent=safe?'✓ WITHIN LANDING LEG LIMIT':'⚠ TOUCHDOWN TOO HARD';
+      document.getElementById('prediction').classList.toggle('danger',!safe);
+    }
+    altitude.addEventListener('input',landingPrediction);
+    burn.addEventListener('input',landingPrediction);
+    landingPrediction();
+    const requested=Number((location.hash.match(/^#slide-(\d+)$/)||[])[1]);
+    goTo(requested>=1&&requested<=slides.length?requested-1:0);
+  </script>
+</body>
+</html>
